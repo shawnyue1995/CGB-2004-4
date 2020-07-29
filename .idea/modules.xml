@@ -3,6 +3,8 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/ideaworkspace4th.iml" filepath="$PROJECT_DIR$/ideaworkspace4th.iml" />
+      <module fileurl="file://$PROJECT_DIR$/springboot_demo_1/springboot_demo_1.iml" filepath="$PROJECT_DIR$/springboot_demo_1/springboot_demo_1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/springboot_demo_2/springboot_demo_2.iml" filepath="$PROJECT_DIR$/springboot_demo_2/springboot_demo_2.iml" />
     </modules>
   </component>
 </project>

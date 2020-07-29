@@ -1,0 +1,47 @@
+#设定环境的默认值
+spring:
+  profiles:
+    active: test
+
+---
+
+# yml配置文件语法
+##  1.key: value   k-v结构使用:号(空格)连接
+##  2.YML配置文件有层级关系.
+##  3.YML配置文件注意缩进.
+##  4.YML文件支持中文.内部编码是utf-8编码
+#为环境定义名称、
+spring:
+  profiles: test
+
+server:
+  port: 8080
+
+  # 设定项目发布路径
+  servlet:
+    context-path: /
+    # /代表缺省值目录
+
+# 在配置文件中添加属性和属性值,为了防止重名发生,则添加前缀区分
+jdbc:
+  username: root
+  password: root
+
+#实现配置文件的分割
+---
+spring:
+  profiles: prod
+
+server:
+  port: 8081
+
+  # 设定项目发布路径
+  servlet:
+    context-path: /
+    # /代表缺省值目录
+
+# 在配置文件中添加属性和属性值,为了防止重名发生,则添加前缀区分
+jdbc:
+  username: com.tedu.cn
+  password: tarena
+
