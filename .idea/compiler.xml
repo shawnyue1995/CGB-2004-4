@@ -2,23 +2,42 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
       <profile name="Maven default annotation processors profile" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="jt-manager" />
+        <module name="springboot_demo5" />
+        <module name="springboot_demo_5" />
+        <module name="jt-common" />
+        <module name="springboot_demo_3" />
         <module name="springboot_demo_2" />
         <module name="springboot_demo_1" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="jt" target="1.8" />
+      <module name="jt-common" target="1.8" />
+      <module name="jt-manager" target="1.8" />
+      <module name="springboot_demo5" target="1.8" />
       <module name="springboot_demo_1" target="1.8" />
       <module name="springboot_demo_2" target="1.8" />
+      <module name="springboot_demo_3" target="1.8" />
+      <module name="springboot_demo_4" target="1.8" />
+      <module name="springboot_demo_5" target="1.8" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="jt-common" options="-parameters" />
+      <module name="jt-manager" options="-parameters" />
+      <module name="springboot_demo5" options="-parameters" />
       <module name="springboot_demo_1" options="-parameters" />
       <module name="springboot_demo_2" options="-parameters" />
+      <module name="springboot_demo_3" options="-parameters" />
+      <module name="springboot_demo_4" options="-parameters" />
+      <module name="springboot_demo_5" options="-parameters" />
     </option>
   </component>
 </project>

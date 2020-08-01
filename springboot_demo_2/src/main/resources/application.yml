@@ -20,10 +20,6 @@ mybatis-plus:
     map-underscore-to-camel-case: true  #自动开启驼峰规则映射
 
 #引入日志输入
-
-
-
-
 logging:
   level:
     com.jt.demo.mapper: debug
