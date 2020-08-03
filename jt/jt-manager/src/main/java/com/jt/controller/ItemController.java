@@ -25,10 +25,8 @@ public class ItemController {
 	 */
 	@RequestMapping("/query")
 	public EasyUITable findItemByPage(Integer page,Integer rows){
-		//1.调用业务
+		//1.调用业务层，获取商品信息
 		return itemService.findItemByPage(page,rows);
 
 	}
-	
-	
 }

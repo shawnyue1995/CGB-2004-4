@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="gg-manager:war">
+    <output-path>$PROJECT_DIR$/gg/gg-manager/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>gg-manager</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="gg-manager-1.0-SNAPSHOT.war">
+      <element id="artifact" artifact-name="gg-manager:war exploded" />
+    </root>
+  </artifact>
+</component>

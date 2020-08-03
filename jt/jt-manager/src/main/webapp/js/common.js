@@ -60,14 +60,14 @@ var TT = KindEditorUtil = {		//相当于java中定义的工具类，里面提供
 	findItemCatName : function(val,row){
 		var name;
 		$.ajax({
-			type:"post",
-			url:"/item/cat/queryItemName",
-			data:{itemCatId:val},
+			type:"get",   //查询业务使用get请求类型
+			url:"/item/cat/queryItemName", //按照业务需要自己定义
+			data:{itemCatId:val},		   //请求参数key-value
 			cache:true,    //缓存
 			async:false,    //表示同步   默认的是异步的true
 			dataType:"text",//表示返回值参数类型
 			success:function(data){
-				name = data;
+				name = data; //将返回值结果返回给EasyUI中
 			}
 		});
 		return name;

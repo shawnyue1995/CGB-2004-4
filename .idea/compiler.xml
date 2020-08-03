@@ -8,6 +8,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="jt-manager" />
+        <module name="gg-manager" />
         <module name="springboot_demo5" />
         <module name="springboot_demo_5" />
         <module name="jt-common" />
@@ -17,6 +18,9 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="gg" target="1.8" />
+      <module name="gg-common" target="1.8" />
+      <module name="gg-manager" target="1.8" />
       <module name="jt" target="1.8" />
       <module name="jt-common" target="1.8" />
       <module name="jt-manager" target="1.8" />
