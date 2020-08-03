@@ -9,5 +9,5 @@ public interface ItemCatService {
 
     ItemCat findItemCatById(Long itemCatId);
 
-    List< EasyUITree > findItemCatList(Long parentId);
+    List< EasyUITree> findItemCatListByParentId(Long parentId);
 }

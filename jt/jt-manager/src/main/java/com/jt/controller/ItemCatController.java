@@ -1,7 +1,10 @@
 package com.jt.controller;
 
+import com.jt.pojo.Item;
 import com.jt.pojo.ItemCat;
 import com.jt.service.ItemCatService;
+import com.jt.service.ItemService;
+import com.jt.vo.EasyUIResult;
 import com.jt.vo.EasyUITree;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,12 +34,14 @@ public class ItemCatController {
      * Sql语句：select * from tb_item_cat where parent_id=0
      * url地址： /item/cat/list
      * 返回值： List<EasyUITree>
+     *
+     * 实现异步树的加载： id：xxxx
+     *
      */
     @RequestMapping("/list")
-    public List< EasyUITree > findItemCatList(){
-        Long parentId=0L; //暂时固定
-        itemCatService.findItemCatList(parentId);
+    public List< EasyUITree > findItemCatList(Long id){
+        Long parentId=(id == null ? 0L : id); //表示根据parentId=0  查询一级商品分类信息
         //作业   难点  itemCat~~~~~EasyUITree的转化
-        return null;
+        return itemCatService.findItemCatListByParentId(parentId);
     }
 }

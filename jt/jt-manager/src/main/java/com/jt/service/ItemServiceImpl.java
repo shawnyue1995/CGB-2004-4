@@ -9,7 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.jt.mapper.ItemMapper;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -31,6 +33,14 @@ public class ItemServiceImpl implements ItemService {
 		Long total=iPage.getTotal();//由分页工具动态获取
 		List<Item> itemList=iPage.getRecords();//获取当前分页的信息
 		return new EasyUITable(total,itemList);
+	}
+	//控制数据库事务
+	@Transactional
+	@Override
+	public void saveItem(Item item) {
+		item.setStatus(1).setCreated(new Date()).setUpdated(item.getUpdated());
+		itemMapper.insert(item);
+
 	}
 
 	/**

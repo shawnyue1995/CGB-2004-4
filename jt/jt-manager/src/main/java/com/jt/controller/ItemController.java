@@ -1,5 +1,7 @@
 package com.jt.controller;
 
+import com.jt.pojo.Item;
+import com.jt.vo.EasyUIResult;
 import com.jt.vo.EasyUITable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,4 +31,16 @@ public class ItemController {
 		return itemService.findItemByPage(page,rows);
 
 	}
+	@RequestMapping("/save")
+	public EasyUIResult saveItem(Item item){
+		try {
+			itemService.saveItem(item);
+			//int a=1/0
+			return EasyUIResult.success();
+		} catch (Exception e) {
+			e.printStackTrace();	//打印错误信息
+			return EasyUIResult.fail();
+		}
+	}
+
 }
