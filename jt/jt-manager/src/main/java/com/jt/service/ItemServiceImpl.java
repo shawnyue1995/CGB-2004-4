@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import com.jt.mapper.ItemMapper;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -51,9 +52,15 @@ public class ItemServiceImpl implements ItemService {
 
 	@Override
 	public void updateItem(Item item) {
-		item.setUpdated(new Date());
+		//item.setUpdated(new Date());
 		//根据对象中部位null的元素充当set条件，主键充当where条件
 		itemMapper.updateById(item);
+	}
+
+	@Override
+	public void deleteItem(Long[] ids) {
+		List<Long> idList= Arrays.asList(ids);
+		itemMapper.deleteBatchIds(idList);
 	}
 
 	/**

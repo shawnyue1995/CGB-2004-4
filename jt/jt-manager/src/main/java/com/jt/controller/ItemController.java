@@ -48,4 +48,9 @@ public class ItemController {
 		itemService.updateItem(item);
 		return SysResult.success();
 	}
+	@RequestMapping("/delete")
+	public SysResult deleteItem(Long[] ids){
+		itemService.deleteItem(ids);
+		return SysResult.success();
+	}
 }
