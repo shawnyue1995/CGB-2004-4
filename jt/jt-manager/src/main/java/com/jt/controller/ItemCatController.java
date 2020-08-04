@@ -4,7 +4,6 @@ import com.jt.pojo.Item;
 import com.jt.pojo.ItemCat;
 import com.jt.service.ItemCatService;
 import com.jt.service.ItemService;
-import com.jt.vo.EasyUIResult;
 import com.jt.vo.EasyUITree;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;

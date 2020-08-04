@@ -1,13 +1,14 @@
 package com.jt.controller;
 
 import com.jt.pojo.Item;
-import com.jt.vo.EasyUIResult;
 import com.jt.vo.EasyUITable;
+import com.jt.vo.SysResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.jt.service.ItemService;
 import org.springframework.web.bind.annotation.RestController;
+
 
 
 @RestController//返回值都是Json串
@@ -32,14 +33,14 @@ public class ItemController {
 
 	}
 	@RequestMapping("/save")
-	public EasyUIResult saveItem(Item item){
+	public SysResult saveItem(Item item){
 		try {
 			itemService.saveItem(item);
 			//int a=1/0
-			return EasyUIResult.success();
+			return SysResult.success();
 		} catch (Exception e) {
 			e.printStackTrace();	//打印错误信息
-			return EasyUIResult.fail();
+			return SysResult.fail();
 		}
 	}
 

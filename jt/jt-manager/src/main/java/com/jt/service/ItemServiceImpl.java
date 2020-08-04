@@ -34,11 +34,16 @@ public class ItemServiceImpl implements ItemService {
 		List<Item> itemList=iPage.getRecords();//获取当前分页的信息
 		return new EasyUITable(total,itemList);
 	}
-	//控制数据库事务
+	/**
+	 * 实现商品信息的入库操作
+	 * 入库之前需要提前将数据补全.  刚新增的商品应该处于上架状态1
+	 * @param item
+	 * 注意事项:完成数据库更新操作时,需要注意数据库事务问题
+	 */
 	@Transactional
 	@Override
 	public void saveItem(Item item) {
-		item.setStatus(1).setCreated(new Date()).setUpdated(item.getUpdated());
+		item.setStatus(1).setCreated(new Date()).setUpdated(item.getCreated());
 		itemMapper.insert(item);
 
 	}
