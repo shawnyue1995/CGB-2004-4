@@ -1,9 +1,7 @@
 package com.jt.controller;
 
-import com.jt.pojo.Item;
 import com.jt.pojo.ItemCat;
 import com.jt.service.ItemCatService;
-import com.jt.service.ItemService;
 import com.jt.vo.EasyUITree;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -43,4 +41,5 @@ public class ItemCatController {
         //作业   难点  itemCat~~~~~EasyUITree的转化
         return itemCatService.findItemCatListByParentId(parentId);
     }
+
 }

@@ -43,5 +43,9 @@ public class ItemController {
 			return SysResult.fail();
 		}
 	}
-
+	@RequestMapping("/update")
+	public SysResult updateItem(Item item){
+		itemService.updateItem(item);
+		return SysResult.success();
+	}
 }

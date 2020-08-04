@@ -43,9 +43,17 @@ public class ItemServiceImpl implements ItemService {
 	@Transactional
 	@Override
 	public void saveItem(Item item) {
+		//保证入库的时间一致
 		item.setStatus(1).setCreated(new Date()).setUpdated(item.getCreated());
 		itemMapper.insert(item);
 
+	}
+
+	@Override
+	public void updateItem(Item item) {
+		item.setUpdated(new Date());
+		//根据对象中部位null的元素充当set条件，主键充当where条件
+		itemMapper.updateById(item);
 	}
 
 	/**
