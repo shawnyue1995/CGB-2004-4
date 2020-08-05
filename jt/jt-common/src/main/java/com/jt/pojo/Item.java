@@ -21,7 +21,7 @@ public class Item extends BasePojo{
 	private String barcode;			//条形码
 	private String image;			//商品图片信息   1.jpg,2.jpg,3.jpg
 	private Long   cid;				//表示商品的分类id
-	private Integer status;			//1正常，2下架
+	private Integer status;			//1上架，2下架
 	
 	//为了满足页面调用需求,添加get方法
 	public String[] getImages(){

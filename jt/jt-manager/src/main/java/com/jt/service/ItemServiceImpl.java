@@ -3,7 +3,9 @@ package com.jt.service;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.jt.mapper.ItemDescMapper;
 import com.jt.pojo.Item;
+import com.jt.pojo.ItemDesc;
 import com.jt.vo.EasyUITable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,6 +22,9 @@ public class ItemServiceImpl implements ItemService {
 	
 	@Autowired
 	private ItemMapper itemMapper;
+
+	@Autowired
+	private ItemDescMapper itemDescMapper;
 	//利用MP方式进行分页查询
 	//执行步骤：1手动编辑sql 2.利用MP机制 动态生成
 	//1.page参数问题：参数1：第几页 参数2：size 每页有多少条
@@ -43,25 +48,67 @@ public class ItemServiceImpl implements ItemService {
 	 */
 	@Transactional
 	@Override
-	public void saveItem(Item item) {
+	public void saveItem(Item item, ItemDesc itemDesc) {
 		//保证入库的时间一致
-		item.setStatus(1).setCreated(new Date()).setUpdated(item.getCreated());
+		item.setStatus(1)
+				.setCreated(new Date())
+				.setUpdated(item.getCreated());
 		itemMapper.insert(item);
+		//分析问题：item表的主键是自增，数据库入库之后才会有主键生成
+
+		itemDesc.setItemId(item.getId())
+				.setCreated(item.getCreated())
+				.setUpdated(item.getCreated());;
+		itemDescMapper.insert(itemDesc);
 
 	}
 
 	@Override
-	public void updateItem(Item item) {
-		//item.setUpdated(new Date());
+	@Transactional
+	public void updateItem(Item item,ItemDesc itemDesc) {
+		item.setUpdated(new Date());
 		//根据对象中部位null的元素充当set条件，主键充当where条件
 		itemMapper.updateById(item);
+		itemDesc.setItemId(item.getId())
+				.setUpdated(item.getUpdated());
+		itemDescMapper.updateById(itemDesc);
 	}
 
 	@Override
+	@Transactional
 	public void deleteItem(Long[] ids) {
-		List<Long> idList= Arrays.asList(ids);
-		itemMapper.deleteBatchIds(idList);
+		//方式1:将数组转化为list集合
+		//List<Long> idList = Arrays.asList(ids);
+		//itemMapper.deleteBatchIds(idList);
+
+		//方式2:利用手写sql完成.
+		itemMapper.deleteItems(ids);
+		//同时删除商品详情信息.
+		itemDescMapper.deleteBatchIds(Arrays.asList(ids));
 	}
+
+	@Override
+	public void updateItemStatus(Long[] ids, Integer status) {
+/*		//1.利用MP方式执行数据库操作
+		Item item=new Item();
+		item.setStatus(status);
+		//定义修改操作的条件构造器
+		UpdateWrapper<Item> updateWrapper=new UpdateWrapper<>();
+		List<Long> idList=Arrays.asList(ids);//数组转化为集合
+		updateWrapper.in("id",idList);
+		//根据MP机制，实现批量的数据更新
+		itemMapper.update(item,updateWrapper);*/
+
+		//2.利用sql方式进行操作
+		//sql：update tb_item set status=#{status},updated=now() where id in(...);
+		itemMapper.updateStatus(ids,status);
+	}
+
+	@Override
+	public ItemDesc findItemDescById(Long itemId) {
+		return (ItemDesc) itemDescMapper.selectById(itemId);
+	}
+
 
 	/**
 	 * 执行步骤:1.手动编辑sql    2.利用MP机制 动态生成

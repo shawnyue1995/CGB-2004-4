@@ -1,9 +1,11 @@
 package com.jt.controller;
 
 import com.jt.pojo.Item;
+import com.jt.pojo.ItemDesc;
 import com.jt.vo.EasyUITable;
 import com.jt.vo.SysResult;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.jt.service.ItemService;
@@ -33,9 +35,9 @@ public class ItemController {
 
 	}
 	@RequestMapping("/save")
-	public SysResult saveItem(Item item){
+	public SysResult saveItem(Item item, ItemDesc itemDesc){
 		try {
-			itemService.saveItem(item);
+			itemService.saveItem(item,itemDesc);
 			//int a=1/0
 			return SysResult.success();
 		} catch (Exception e) {
@@ -44,13 +46,30 @@ public class ItemController {
 		}
 	}
 	@RequestMapping("/update")
-	public SysResult updateItem(Item item){
-		itemService.updateItem(item);
+	public SysResult updateItem(Item item,ItemDesc itemDesc){
+		itemService.updateItem(item,itemDesc);
 		return SysResult.success();
 	}
 	@RequestMapping("/delete")
 	public SysResult deleteItem(Long[] ids){
 		itemService.deleteItem(ids);
 		return SysResult.success();
+	}
+	/**
+	 * l利用restful方式实现状态修改
+	 * /item/reshelf    status=1
+	 * /item/instock	status=2
+	 */
+	@RequestMapping("/updateStatus/{status}")
+	public SysResult updateItemStatus(Long[] ids, @PathVariable Integer status){
+		itemService.updateItemStatus(ids,status);
+		return SysResult.success();
+	}
+
+
+	@RequestMapping("query/item/desc/{itemId}")
+	public SysResult findItemDescById(@PathVariable Long itemId){
+		ItemDesc itemDesc= itemService.findItemDescById(itemId);
+		return SysResult.success(itemDesc);
 	}
 }

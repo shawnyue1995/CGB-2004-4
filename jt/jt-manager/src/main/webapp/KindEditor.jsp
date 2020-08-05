@@ -11,6 +11,7 @@
 
 <script type="text/javascript">
 	$(function(){
+	    //在指定的位置初始化富文本
 		KindEditor.ready(function(){
 			KindEditor.create("#editor")
 		})
