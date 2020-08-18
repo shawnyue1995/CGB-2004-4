@@ -6,13 +6,14 @@ import lombok.Data;
 import lombok.experimental.Accessors;
 
 /**
- * 构建商品详情的pojo对象
+ * 构建商品详情的POJO对象
  */
-@Data
 @TableName("tb_item_desc")
+@Data  //重写toString方法  只重写了自己的属性 父级没有添加.
 @Accessors(chain = true)
-public class ItemDesc extends BasePojo {
-    @TableId    //只标识主键即可1
-    private Long itemId;
-    private String itemDesc;
+public class ItemDesc extends BasePojo{
+
+    @TableId                //只标识主键即可
+    private Long itemId;    //要求与商品表Id保持一致.
+    private String itemDesc;    //商品详情信息
 }

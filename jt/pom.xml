@@ -10,6 +10,8 @@
     <modules>
         <module>jt-common</module>
         <module>jt-manager</module>
+        <module>jt-web</module>
+        <module>jt-sso</module>
     </modules>
     <!--pom标识 我是一个聚合工程，在内部可以添加好多项目-->
     <packaging>pom</packaging>

@@ -3,6 +3,7 @@
   <component name="FrameworkDetectionExcludesConfiguration">
     <file type="web" url="file://$PROJECT_DIR$/gg/gg-manager" />
     <file type="web" url="file://$PROJECT_DIR$/jt/jt-manager" />
+    <file type="web" url="file://$PROJECT_DIR$/jt/jt-web" />
     <file type="web" url="file://$PROJECT_DIR$/springboot_demo_3" />
     <file type="web" url="file://$PROJECT_DIR$/springboot_demo_4" />
   </component>

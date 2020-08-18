@@ -42,8 +42,13 @@ public class FileController {
         return "文件上传成功";
     }
 
+    /**
+     * 实现图片上传操作
+     * @param uploadFile
+     * @return ImageVO对象
+     */
     @RequestMapping("/pic/upload")
-    public ImageVO uploadFile(MultipartFile uploadFile){
-        return fileService.uploadFile(uploadFile);
+    public ImageVO uploadFile(MultipartFile uploadFile) throws IOException {
+        return fileService.upload(uploadFile);
     }
 }

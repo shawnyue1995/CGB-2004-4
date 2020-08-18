@@ -1,22 +1,32 @@
 package com.jt.service;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.jt.anno.CacheFind;
 import com.jt.mapper.ItemCatMapper;
-import com.jt.pojo.ItemCat;
+import com.jt.util.ObjectMapperUtil;
 import com.jt.vo.EasyUITree;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.jt.pojo.ItemCat;
+import redis.clients.jedis.Jedis;
+
 import java.util.ArrayList;
 import java.util.List;
-
+//快捷键  alt+shift+p   2.alt+回车
+//动态生成get/set等方法    alt+insert
 @Service
 public class ItemCatServiceImpl implements ItemCatService {
+
     @Autowired
-    private ItemCatMapper itemCatMapper;
+    private ItemCatMapper itemCatMapper;  //如果mapper字体飘红  先暂时不管.
+    @Autowired(required = false) 		  //告知spring容器,改注入不是必须的.如果改对象被程序调用时生效
+    private Jedis jedis;
+
 
     @Override
     public ItemCat findItemCatById(Long itemCatId) {
+        //利用MP机制查询数据库数据.
         return itemCatMapper.selectById(itemCatId);
     }
 
@@ -28,14 +38,15 @@ public class ItemCatServiceImpl implements ItemCatService {
      * 	3.动态的将ItemCat对象转化为EasyUITree对象
      * 	3.但是返回值要求 返回List<EasyUITree>
      */
-
+    @Override
+    @CacheFind(key="ITEM_CAT_LIST")  //使用注解,自定义前缀
     public List<EasyUITree> findItemCatListByParentId(Long parentId){
         QueryWrapper<ItemCat> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("parent_id",parentId);
         List<ItemCat> itemCatList = itemCatMapper.selectList(queryWrapper);
         List<EasyUITree> treeList = new ArrayList<>();  //先准备一个空集合.
         //需要将数据一个一个的格式转化.
-        for(ItemCat itemcat :itemCatList){
+        for(ItemCat itemcat : itemCatList){
             Long id = itemcat.getId();	//获取ID
             String text = itemcat.getName();	//获取文本
             //如果是父级,则默认应该处于关闭状态 closed, 如果不是父级 则应该处于打开状态. open
@@ -49,4 +60,32 @@ public class ItemCatServiceImpl implements ItemCatService {
         return treeList;
     }
 
+
+    @Override
+    public List<EasyUITree> findItemCatCache(Long parentId) {
+        //1.准备key
+        String key = "ITEM_CAT_LIST::" + parentId;
+        List<EasyUITree> treeList = new ArrayList<>();
+        Long  startTime = System.currentTimeMillis();	//记录开始时间
+        //2.判断redis中是否有数据
+        if(jedis.exists(key)){
+            //表示key已存在不是第一次查询.直接从redis中获取数据.返回数据
+            String json = jedis.get(key);
+            treeList = ObjectMapperUtil.toObject(json, treeList.getClass());
+            Long endTime = System.currentTimeMillis();
+            System.out.println("查询缓存的时间为:"+(endTime-startTime)+"毫秒");
+        }else{
+            //表示key不存在,执行数据库查询
+            treeList = findItemCatListByParentId(parentId);
+            Long endTime = System.currentTimeMillis();
+            System.out.println("查询数据库的时间为:"+(endTime-startTime)+"毫秒");
+
+            //2.将数据转化为json
+            String  json = ObjectMapperUtil.toJSON(treeList);
+            //3.将返回值结果,保存到redis中. 是否需要设定超时时间???  业务
+            jedis.set(key, json);
+
+        }
+        return treeList;
+    }
 }

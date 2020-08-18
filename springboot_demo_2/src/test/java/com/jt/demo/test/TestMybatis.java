@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import com.jt.demo.mapper.UserMapper;
+import com.jt.demo.pojo.User;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,8 +14,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
-import com.jt.demo.mapper.UserMapper;
-import com.jt.demo.pojo.User;
 
 @RunWith(SpringRunner.class)	//注意测试文件的位置 必须在主文件加载包路径下
 @SpringBootTest
@@ -25,7 +25,7 @@ public class TestMybatis {
 	@Test
 	public void testFindUser() {
 		
-		List<User> userList = userMapper.findAll();
+		List< User > userList = userMapper.findAll();
 		System.out.println(userList);
 	}
 

@@ -1,8 +1,8 @@
 package com.jt.controller;
 
+import com.jt.vo.EasyUITable;
 import com.jt.pojo.Item;
 import com.jt.pojo.ItemDesc;
-import com.jt.vo.EasyUITable;
 import com.jt.vo.SysResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -29,7 +29,8 @@ public class ItemController {
 	 * 				url-controller-service-mapper  结构代码
 	 */
 	@RequestMapping("/query")
-	public EasyUITable findItemByPage(Integer page,Integer rows){
+	public EasyUITable findItemByPage(Integer page, Integer rows){
+		System.out.println(itemService.findItemByPage(page,rows));
 		//1.调用业务层，获取商品信息
 		return itemService.findItemByPage(page,rows);
 

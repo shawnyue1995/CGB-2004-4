@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.jt.demo.mapper.UserMapper">
+<mapper namespace="UserMapper">
 	<!--说明：如果每次数据库操作都需要写pojo的包路径，则编码比较繁琐
 		优化策略：可以使用别名包代替
 	-->

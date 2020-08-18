@@ -1,4 +1,4 @@
-package java.com.jt.demo.test;
+package com.jt.demo.test;
 
 import java.util.ArrayList;
 import java.util.Arrays;

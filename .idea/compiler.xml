@@ -9,6 +9,8 @@
         <outputRelativeToContentRoot value="true" />
         <module name="jt-manager" />
         <module name="gg-manager" />
+        <module name="jt-sso" />
+        <module name="jt-web" />
         <module name="springboot_demo5" />
         <module name="springboot_demo_5" />
         <module name="jt-common" />
@@ -24,6 +26,8 @@
       <module name="jt" target="1.8" />
       <module name="jt-common" target="1.8" />
       <module name="jt-manager" target="1.8" />
+      <module name="jt-sso" target="1.8" />
+      <module name="jt-web" target="1.8" />
       <module name="springboot_demo5" target="1.8" />
       <module name="springboot_demo_1" target="1.8" />
       <module name="springboot_demo_2" target="1.8" />
@@ -36,6 +40,8 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="jt-common" options="-parameters" />
       <module name="jt-manager" options="-parameters" />
+      <module name="jt-sso" options="-parameters" />
+      <module name="jt-web" options="-parameters" />
       <module name="springboot_demo5" options="-parameters" />
       <module name="springboot_demo_1" options="-parameters" />
       <module name="springboot_demo_2" options="-parameters" />
