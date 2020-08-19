@@ -2,6 +2,7 @@ package com.jt.service;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.jt.mapper.UserMapper;
+import com.jt.pojo.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -32,5 +33,12 @@ public class UserServiceImpl implements UserService {
 		int count = userMapper.selectCount(queryWrapper);
 
 		return count==0 ? false : true;
+	}
+
+	@Override
+	public void saveHttpClient(User userPOJO) {
+		userPOJO.setEmail("111111111@qq.com")//暂时写死
+				.setPhone("111111111");
+		userMapper.insert(userPOJO);
 	}
 }
