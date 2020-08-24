@@ -5,8 +5,10 @@
     <file url="file://$PROJECT_DIR$/dubbo-jt/dubbo-jt-demo-interface/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/dubbo-jt/dubbo-jt-demo-provider/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/dubbo-jt/dubbo-jt-demo-provider2/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/jt/jt-cart/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/jt/jt-common/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/jt/jt-manager/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/jt/jt-order/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/jt/jt-sso/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/jt/jt-web/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/springboot_demo_1/src/main/java" charset="UTF-8" />
